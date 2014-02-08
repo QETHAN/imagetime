@@ -1,0 +1,16 @@
+// Created by QETHAN on 14-2-8.
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/admin.css')
+		script(src='/javascripts/util.js')
+	body
+		#admin
+			h1 添加用户
+			form(method='POST',action='admin')
+				fieldset
+					input(name='name',placeholder='用户昵称')
+				fieldset
+					input(name='inviteCode',placeholder='邀请码')
+				input(type='submit',value='提交')

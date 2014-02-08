@@ -1,0 +1,58 @@
+extends layout
+block content
+	.img-timeline
+		//显示年月日fixed
+		#nyr(class='nyr')
+			span#year.year #{year}年
+			span#month.month #{month}月
+			span#date.date #{date}日
+		if(data)
+			ul#img-content.img-content
+				input#pagenum(type='hidden',value='1')
+				input#lastid(type='hidden',value=lastid)
+				each img in data
+					li.item(data-year=img.year,data-month=img.month,data-date=img.date)
+						span.item-pin
+						span.item-time=img.time
+						img(src="/"+img.path)
+		else
+			#nothing
+		script#img-item-tpl(type='text/x-handlebars-template')
+			li.item(data-year='{{year}}',data-month='{{month}}',data-date='{{date}}')
+				span.item-pin
+				span.item-time='{{time}}'
+				img(src="/{{path}}")
+		#loading(style="text-align:center;display:none;")
+			.spinner(style="width:64px;height:64px;margin-top:30px;")
+				.bar1
+				.bar2
+				.bar3
+				.bar4
+				.bar5
+				.bar6
+				.bar7
+				.bar8
+				.bar9
+				.bar10
+				.bar11
+				.bar12
+		#nodata(style="text-align:center;display:none;height:64px;line-height:64px;")
+			| 没有图片了
+		//图片拖拽区域
+		section.drag
+			header
+				h1 拖拽上传
+				span#error(class='error') 图片重名了，请重命名
+			article
+				#holder
+				p#upload(class="hidden")
+					label Drag & drop not supported, but you can still upload via this input field:<br>
+						<input type="file">
+				p#filereader File API & FileReader API not supported
+				p#formdata XHR2's FormData is not supported
+				p#progress XHR2's upload progress isn't supported</p>
+				p
+					span(style="display:block;margin-bottom: 10px;") 上传进度:
+					progress#uploadprogress(min="0",max="100",value="0")
+					span#uploadNum 0
+					span %

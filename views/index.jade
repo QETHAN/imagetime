@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/hello.css')
+		script(src='/javascripts/handlebars-v1.3.0.js')
+		script(src='/javascripts/socket.io.min.js')
+		script(src='/javascripts/util.js')
+		script(src='/javascripts/wall.js')
+	body
+		.loginpage
+			.login
+				h1 图片时间
+				input#invite(type='text',placeholder='invite code here')
+			.wall
+				.content.clearfix
+					each img in data
+						.img
+							img(src=img.path)
+
+
